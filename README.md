@@ -37,3 +37,15 @@ curl -X PUT "http://localhost:8000/api/v1/users/1" \
 ```shell
 curl -X DELETE "http://localhost:8000/api/v1/users/1"
 ```
+
+## Running tests
+
+### Run pytest
+```shell
+uv run pytest
+```
+
+### Run pytest with coverage
+```shell
+uv run pytest --cov
+```
