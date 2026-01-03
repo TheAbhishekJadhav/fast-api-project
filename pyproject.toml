@@ -6,6 +6,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.128.0",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
     "sqlalchemy>=2.0.45",
     "uvicorn>=0.40.0",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = "."
