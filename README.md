@@ -2,6 +2,10 @@
 ```shell
 uv run uvicorn app.main:app --reload
 ```
+or
+```shell
+make run
+```
 
 ## Example requests:
 
@@ -42,10 +46,15 @@ curl -X DELETE "http://localhost:8000/api/v1/users/1"
 
 ### Run pytest
 ```shell
-uv run pytest
+uv run pytest -v
 ```
 
 ### Run pytest with coverage
 ```shell
-uv run pytest --cov
+uv run pytest -v --cov=app
 ```
+or
+```shell
+make test
+```
+
