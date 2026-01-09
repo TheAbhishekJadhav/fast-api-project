@@ -13,7 +13,7 @@ def override_get_user_service():
 
 app.dependency_overrides[UserService] = override_get_user_service
 
-def test_create_user_():
+def test_create_user():
     # Test user creation
     response = client.post("/api/v1/users", json={"name": "Test User"})
     assert response.status_code == 200
