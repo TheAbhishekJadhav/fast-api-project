@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from app.db.schema import User
+from app.services.user_service_interface import UserServiceInterface
 
-class UserService:
+class UserService(UserServiceInterface):
     def __init__(self, session: Session) -> None:
         self._db = session
     

@@ -1,24 +1,23 @@
 from fastapi.testclient import TestClient
 from app.main import app
-from app.services.user_service import UserService
-from tests.test_db import TestingSessionLocal
+from app.services.user_service_interface import UserServiceInterface
+from tests.unit.services.fake_user_service import FakeUserService
 
 # Setup test client
 client = TestClient(app)
 
-# Dependency override to use test database session
+# Dependency override to use FakeUserService
 def override_get_user_service():
-    session = TestingSessionLocal()  # Assume TestingSessionLocal is a test database session
-    yield UserService(session=session)
+    yield FakeUserService()
 
-app.dependency_overrides[UserService] = override_get_user_service
+app.dependency_overrides[UserServiceInterface] = override_get_user_service
 
+# Sociable unit tests for user API endpoints
 def test_create_user():
-    # Test user creation
-    response = client.post("/api/v1/users", json={"name": "Test User"})
+    response = client.post("/api/v1/users", json={"name": "Unit Test User"})
     assert response.status_code == 200
     created_user = response.json()
-    assert created_user["name"] == "Test User"
+    assert created_user["name"] == "Unit Test User"
     assert "id" in created_user
 
     # Test getting the created user
